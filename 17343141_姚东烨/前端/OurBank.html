@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>OurBank</title>
+<meta charset="utf-8">
+<script type="text/javascript" charset="UTF-8">
+
+    function Issue(){
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        var from = document.getElementById("issuePr").value;
+        var to = document.getElementById("issueTo").value;
+        var amount = document.getElementById("issueAmount").value;
+        httpRequest.open('GET', 'http://localhost:1254/issue?from='+from+'&to='+to+'&amount='+amount);
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        console.log("SEND");
+        httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            console.log("RECEIVE");
+            var json = httpRequest.responseText;//获取到json字符串，还需解析
+            alert(json);
+            }
+        }
+    }
+    function Evaluate(){
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        var from = document.getElementById("evaluatePr").value;
+        var to = document.getElementById("evaluateCompany").value;
+        httpRequest.open('GET', 'http://localhost:1254/evaluate?from='+from+'&to='+to);
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        console.log("SEND");
+        httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            console.log("RECEIVE");
+            var json = httpRequest.responseText;//获取到json字符串，还需解析
+            alert(json);
+            }
+        }
+    }
+    function TransferByCash(){
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        var from = document.getElementById("transferCashPr").value;
+        var to = document.getElementById("transferCashTo").value;
+        var amount=document.getElementById("transferCashAmount").value;
+        httpRequest.open('GET', 'http://localhost:1254/sendCash?from='+from+'&to='+to+"&amount="+amount);
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        console.log("SEND");
+        httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            console.log("RECEIVE");
+            var json = httpRequest.responseText;//获取到json字符串，还需解析
+            alert(json);
+            }
+        }
+    }
+    function TransferByLoan(){
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        var from = document.getElementById("transferLoanPr").value;
+        var to = document.getElementById("transferLoanTo").value;
+        var amount=document.getElementById("transferLoanAmount").value;
+        var time=document.getElementById("transferLoanTime").value;
+        httpRequest.open('GET', 'http://localhost:1254/sendLoan?from='+from+'&to='+to+"&amount="+amount+"&time="+time);
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        console.log("SEND");
+        httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            console.log("RECEIVE");
+            var json = httpRequest.responseText;//获取到json字符串，还需解析
+            alert(json);
+            }
+        }
+    }
+    function TransferByOtherLoan(){
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        var from = document.getElementById("transferOtherLoanPr").value;
+        var to = document.getElementById("transferOtherLoanTo").value;
+        var amount=document.getElementById("transferOtherLoanAmount").value;
+        var loanAddress=document.getElementById("transferOtherLoanLoan").value;
+        httpRequest.open('GET', 'http://localhost:1254/sendOtherLoan?from='+from+'&to='+to+"&amount="+amount+"&loanAddress="+loanAddress);
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        console.log("SEND");
+        httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            console.log("RECEIVE");
+            var json = httpRequest.responseText;//获取到json字符串，还需解析
+            alert(json);
+            }
+        }
+    }
+    function BF(){
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        var from = document.getElementById("BFPr").value;
+        var loanAddress=document.getElementById("BFLoan").value;
+        httpRequest.open('GET', 'http://localhost:1254/loan?from='+from+"&loanAddress="+loanAddress);
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        console.log("SEND");
+        httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            console.log("RECEIVE");
+            var json = httpRequest.responseText;//获取到json字符串，还需解析
+            alert(json);
+            }
+        }
+    }
+    function PL(){
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        var from = document.getElementById("PLPr").value;
+        var loanAddress=document.getElementById("PLLoan").value;
+        httpRequest.open('GET', 'http://localhost:1254/payLoan?from='+from+"&loanAddress="+loanAddress);
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        console.log("SEND");
+        httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            console.log("RECEIVE");
+            var json = httpRequest.responseText;//获取到json字符串，还需解析
+            alert(json);
+            }
+        }
+    }
+    function GetBalance(){
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        var from = document.getElementById("GBPr").value;
+        httpRequest.open('GET', 'http://localhost:1254/getBalance?from='+from);
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        console.log("SEND");
+        httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            console.log("RECEIVE");
+            var json = httpRequest.responseText;//获取到json字符串，还需解析
+            alert(json);
+            }
+        }
+    }
+    </script>
+
+<style>
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+.center{text-align: center;
+        white-space: nowrap;
+        margin-top: 0px;
+        margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+
+<center><h2>OurBank</h2></center>
+<hr/>
+<hr/>
+Get Balance
+<center>
+    <p>
+        PrivateKey:
+        <div  class="center">
+            <input type="text" name="account" id="GBPr">
+        </div>
+    </p>
+    <button onclick="GetBalance()">
+        Confirm
+    </button>
+</center>
+<hr/>
+Issue (Bank)
+<center>
+    <p> 
+        To:
+        <div  class="center">
+            <input type="text" name="account" id="issueTo">
+        </div>
+    </p>
+    <p>
+        Amount:
+        <div  class="center">
+            <input type="text" name="account" id="issueAmount">
+        </div>
+    </p>
+    <p>
+        PrivateKey:
+        <div  class="center">
+            <input type="text" name="account" id="issuePr">
+        </div>
+    </p>
+    <button onclick="Issue()">
+        Confirm
+    </button>
+</center>
+<hr/>
+Evaluate (Bank)
+<center>
+    <p> 
+        Company:
+        <div  class="center">
+            <input type="text" name="account" id="evaluateCompany">
+        </div>
+    </p>
+    <p>
+        PrivateKey:
+        <div  class="center">
+            <input type="text" name="account" id="evaluatePr">
+        </div>
+    </p>
+    <button onclick="Evaluate()">
+        Confirm
+    </button>
+</center>
+<hr/>
+Transfer (By cash)
+<center>
+    <p> 
+        To:
+        <div  class="center">
+            <input type="text" name="account" id="transferCashTo">
+        </div>
+    </p>
+    <p>
+        Amount:
+        <div  class="center">
+            <input type="text" name="account" id="transferCashAmount">
+        </div>
+    </p>
+    <p>
+        PrivateKey:
+        <div  class="center">
+            <input type="text" name="account" id="transferCashPr">
+        </div>
+    </p>
+    <button onclick="TransferByCash()">
+        Confirm
+    </button>
+</center>
+<hr/>
+Transfer (By loan)
+<center>
+    <p> 
+        To:
+        <div  class="center">
+            <input type="text" name="account" id="transferLoanTo">
+        </div>
+    </p>
+    <p>
+        Amount:
+        <div  class="center">
+            <input type="text" name="account" id="transferLoanAmount">
+        </div>
+    </p>
+    <p>
+        PrivateKey:
+        <div  class="center">
+            <input type="text" name="account" id="transferLoanPr">
+        </div>
+    </p>
+    <p>
+        Time:
+        <div  class="center">
+            <input type="text" name="account" id="transferLoanTime">\
+        </div>
+    </p>
+    <button onclick="TransferByLoan()">
+        Confirm
+    </button>
+</center>
+<hr/>
+Transfer (By Other's loan)
+<center>
+    <p> 
+        To:
+        <div  class="center">
+            <input type="text" name="account" id="transferOtherLoanTo">
+        </div>
+    </p>
+    <p>
+        Loan:
+        <div  class="center">
+            <input type="text" name="account" id="transferOtherLoanLoan">
+        </div>
+    </p>
+    <p>
+        Amount:
+        <div  class="center">
+            <input type="text" name="account" id="transferOtherLoanAmount">
+        </div>
+    </p>
+    <p>
+        PrivateKey:
+        <div  class="center">
+            <input type="text" name="account" id="transferOtherLoanPr">
+        </div>
+    </p>
+    <button onclick="TransferByOtherLoan()">
+        Confirm
+    </button>
+</center>
+<hr/>
+Bank Financing
+<center>
+    <p>
+        Loan:
+        <div  class="center">
+            <input type="text" name="account" id="BFLoan">
+        </div>
+    </p>
+    <p>
+        PrivateKey:
+        <div  class="center">
+            <input type="text" name="account" id="BFPr">
+        </div>
+    </p>
+    <button onclick="BF()">
+        Confirm
+    </button>
+</center>
+<hr/>
+Pay Loan
+<center>
+    <p>
+        Loan:
+        <div  class="center">
+            <input type="text" name="account" id="PLLoan">
+        </div>
+    </p>
+    <p>
+        PrivateKey:
+        <div  class="center">
+            <input type="text" name="account" id="PLPr">
+        </div>
+    </p>
+    <button onclick="PL()">
+        Confirm
+    </button>
+</center>
+<hr/>
+<br>
+<br>
+
+</body>
+</html>
